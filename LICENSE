@@ -12,3 +12,13 @@ Alle Inhalte sind geistiges Eigentum der GRADweight GmbH.
 Wiedergabe, Vervielfältigung, öffentliche Nutzung oder Weitergabe an
 Dritte ist ohne vorherige schriftliche Genehmigung der GRADweight GmbH
 nicht gestattet.
+
+## Ausnahmen und Community
+
+- **`guardrails/guard.py`** ist als Referenz-Baustein bewusst klein
+  und lauffähig gehalten; die Verwendung als Ausgangspunkt für eigenen
+  Code ist erlaubt (Attribution: GRADweight GmbH, guard.py).
+- **Doku-Beiträge** (korrekte Norm-Fristen, Fehler in der Doku,
+  fehlende Technik): willkommen via Pull Request — s. `CONTRIBUTING.md`.
+  Mit einem gemergten PR wird der Beitrag unter derselben Lizenz
+  veröffentlicht (Contributor-Assign, keine gesonderte Abrede nötig).
