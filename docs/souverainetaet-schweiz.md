@@ -1,6 +1,6 @@
 # Souveränität & Schweizer Kontext
 
-der Schweizer Kontext ist kein Detail. Die regulatorische Lage bestimmt,
+Der Schweizer Kontext ist kein Detail. Die regulatorische Lage bestimmt,
 **was technisch möglich ist** — und wo die Grenzen liegen. Diese Doku
 sammelt die relevanten Regeln mit **Datum und Quelle**, damit jeder sie
 nachprüfen kann — und damit klar ist, **was davon rechtlicher Rat ist und was
@@ -15,7 +15,7 @@ Technik**.
 
 ## EU AI Act — die Fristen, die uns betreffen
 
-**Stand: Digital Omnibus VO (EU) 2026/1744, in Kraft seit 24.07.2026.**
+**Stand: Digital Omnibus VO (EU) 2026/1744, veröffentlicht 24.07.2026, in Kraft seit 27.07.2026.**
 Die Verschiebung ist **final**, nicht mehr vorläufig.
 
 | Pflichten | Was es betrifft | Frist |
