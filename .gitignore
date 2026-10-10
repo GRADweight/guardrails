@@ -4,3 +4,17 @@
 node_modules
 .venv
 __pycache__/
+
+# Office-Lock- und Temp-Dateien
+~$*
+
+# Keine internen Office-Dokumente in diesem Repo
+# (s. CHANGES.md 2026/10/10 — interne Referenzen gehören in biz-kb)
+material/
+
+# Keine Secrets
+*.key
+*.pem
+.env
+.env.*
+!.env.example
