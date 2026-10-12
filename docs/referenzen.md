@@ -54,9 +54,9 @@ Wenn Sie den Code hinter einer Doku-Behauptung sehen wollen:
 | **Auth-Helfer** | MSAL, Token-Handling, Microsoft-Identitäten | `gw-shared-lib → gw_shared_lib/auth_helpers.py` |
 | **RAG-Chatbot** (Produkt 1) | FastAPI + Streamlit über interne Dokumente | `gw-rag-chatbot → code/app.py` |
 | **Angebots-Katalog** | 26 Angebots-Doks (PoC 01–26); **2** davon als Prototyp implementiert (`01-rag-chatbot`, `02-rechnungs-extraktion`), die übrigen als Angebots-Dokumentation | `gw-prototypen → docs/`, `prototypes/` |
-| **Architektur-Prinzipien** (Service-Linie) | Multi-Agent, RAG, Deployment-Souveränität, Audit-Trail | `gradbuild → doku/architektur.md` |
-| **Gate-Modell** (Goverance) | Gates G0–G8 | `gradmap → doku/gate-modell.md` |
-| **Stufen-Modell** (Engineering) | Stufe 1–4 (Assistent → Autonom) | `gradbuild → doku/stufen.md` |
+| **Architektur-Prinzipien** (Service-Linie) | Multi-Agent, RAG, Deployment-Souveränität, Audit-Trail | `grad-engineering → doku/architektur.md` |
+| **Gate-Modell** (Goverance) | Gates G0–G8 | `grad-governance → doku/gate-modell.md` |
+| **Stufen-Modell** (Engineering) | Stufe 1–4 (Assistent → Autonom) | `grad-engineering → doku/stufen.md` |
 
 > **Ehrlicher Unterschied:** «26 Prototypen» ist die **Botschaft**,
 > die der Katalog trägt. Tatsächlich implementiert: 2 (RAG-Chatbot,
@@ -97,12 +97,12 @@ zurückverweisbar:
 | Guardrails (mehrere Schichten) | [`guardrails/guard.py`](guardrails/guard.py) **hier** + `gw-shared-lib/guardrails.py` | alle / Org |
 | RAG mit Quellenangabe | `gw-shared-lib/rag_core.py`, [`ai-craft.md`](ai-craft.md) §1 | Org |
 | Prompt-Engineering als Code | `gw-shared-lib/rag_core.py`, [`ai-craft.md`](ai-craft.md) §2 | Org |
-| Konfidenz-Routing | `gradbuild/doku/architektur.md`, [`ai-craft.md`](ai-craft.md) §4 | Org |
-| Multi-Agent mit Protokoll | `gradbuild/doku/architektur.md`, [`ai-craft.md`](ai-craft.md) §5 | Org |
+| Konfidenz-Routing | `grad-engineering/doku/architektur.md`, [`ai-craft.md`](ai-craft.md) §4 | Org |
+| Multi-Agent mit Protokoll | `grad-engineering/doku/architektur.md`, [`ai-craft.md`](ai-craft.md) §5 | Org |
 | Evals als Regressionsnetz | [`ai-craft.md`](ai-craft.md) §6 (je System: `evals/`) | Doku / Org |
 | Souveränes Inferenz-Routing | [`ai-craft.md`](ai-craft.md) §7, `souverainetaet-schweiz.md` | Doku |
-| Deployment-Souveränität | `gradbuild/doku/architektur.md`, `souverainetaet-schweiz.md` | Org / Doku |
-| Audit und Erklärbarkeit | `gradbuild/doku/architektur.md`, [`ai-craft.md`](ai-craft.md) §9 | Org / Doku |
+| Deployment-Souveränität | `grad-engineering/doku/architektur.md`, `souverainetaet-schweiz.md` | Org / Doku |
+| Audit und Erklärbarkeit | `grad-engineering/doku/architektur.md`, [`ai-craft.md`](ai-craft.md) §9 | Org / Doku |
 
 ---
 
