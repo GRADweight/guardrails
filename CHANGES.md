@@ -45,7 +45,7 @@ werden — aber wenn unsicher, wird es notiert.
   - Mehr lauffähige Bausteine hier im Repo (RAG-Kern, Prompt-Basis,
     Evals) — aktuell nur Verweis auf `gw-shared-lib`, das in der
     Personal-Org liegt.
-  - Repository `biz-kb` (intern) nicht in `referenzen.md` verlinkt
+  - Repository `grad-internal-kb-kb` (intern) nicht in `referenzen.md` verlinkt
     (bewusst: kein interner Link in der öffentlichen Doku).
 
 ## 2026/10/10 — Hub von Marketing-Broschüre zu Engineering-Org
@@ -77,7 +77,7 @@ werden — aber wenn unsicher, wird es notiert.
 - Quelle:
   - Digital Omnibus VO (EU) 2026/1744 (EUR-Lex), in Kraft seit 27.07.2026
   - `~/code/gradweight/gw-shared-lib/gw_shared_lib/{rag_core,guardrails,parsers}.py`
-  - `~/code/gradbuild/doku/architektur.md`
+  - `~/code/grad-engineering/doku/architektur.md`
   - `~/Documents/GRADweight GmbH/50 ai Solution architecture; Engineering/ai-prototypen-katalog.md`
 - Commit: `d51f0ed` (v1.0, Hub-Grundgerüst) → **dieser Commit** (v1.1, Engineering-Org)
 - Hinweis: **Keine Kunden, keine Preise, keine internen Zahlen** in
