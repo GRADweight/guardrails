@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gradweight-guardrails"
+description = "GRADweight Guardrails — lauffähiger Referenz-Baustein: Erstfilter vor dem LLM-Anruf. Deterministisch, ohne Netzwerk, mit Guard-Bench (32 dokumentierte Cases)."
+version = "1.3.0"
+authors = [{ name = "GRADweight GmbH" }]
+readme = "README.md"
+requires-python = ">=3.8"
+# **Bewusst KEINE externen Abhängigkeiten.**
+# Der Guard ist der Erste Filter — er muss in jedem Kramkasten laufen.
+# Für Produktion: zusätzlich ein LLM-basiertes Guardrail (s. README).
+dependencies = []
+license = { text = "All Rights Reserved (s. LICENSE)" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Natural Language :: German",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Application Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/GRADweight/grad-guardrails"
+Source = "https://github.com/GRADweight/grad-guardrails"
+Documentation = "https://github.com/GRADweight/grad-guardrails#readme"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["guard*"]
+exclude = ["guard.bench_data*"]
+
+[tool.setuptools.package-data]
+guard = ["bench_data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
