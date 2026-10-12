@@ -22,6 +22,37 @@ werden — aber wenn unsicher, wird es notiert.
 
 ---
 
+## 2026/10/12 — v1.3.0: Guard wird zum lauffähigen Paket mit Guard-Bench
+
+- `guard/` (neu): Python-Paket — `guard/core.py` (die drei Kernfunktionen,
+  konstante Listen exports), `guard/bench.py` (Bench-CLI), `guard/__main__.py`
+  (`python -m guard bench` | `python -m guard "<text>"` | `--version`).
+- `guard/bench_data/guard-bench.json` (neu): **32 dokumentierte Cases** in
+  4 Kategorien (`legit` 12, `inj` 10, `adv` 5, `edge` 5). Jeder Case mit
+  Begründung. **Die Grenzen sind Teil des Nachweises**: Base64,
+  Whitespace-Aufweitung und Zeilenumbruch entkommen dem Zeichenfolgen-Filter
+  — als `adv-01, adv-02, adv-03` mit `expect: pass` dokumentiert.
+  Verifiziert: 32/32 deterministisch (Py 3.11, 12.10).
+- `tests/` (neu): 47 pytest-Tests
+  (`test_guard_core.py` 39 + `test_guard_bench.py` 8). Alle grün in 0.02 s.
+- `pyproject.toml` (neu): `gradweight-guardrails` v1.3.0, `requires-python
+  >=3.8`, **null externe Abhängigkeiten**, `.[dev]` = pytest.
+- `QUICKSTART.md` (neu): 5-Zeilen-Quickstart (Standalone + Paket + Bench + Test).
+- `README.md`: Guard-Bench-Abschnitt neu, Quickstart-Verweis, 32/47/Ci-Zahlen.
+- `.github/workflows/guard-selftest.yml`: CI auf Py 3.9/3.11/3.12
+  (Standalone + Install + Bench + pytest + Einzel-CLI).
+- `guardrails/guard.py`: bleibt lauffähig (Legacy-Modus).
+- `LICENSE`: korrekte Beschreibung (bisher: Copy-Paste der `grad-internal-kb`-Lizenz —
+  PPTX/DOCX-Referenz hier unzutreffend). Alle Rechte vorbehalten +
+  Referenz-/Attribution-Ausnahme + Community-PR-Regel.
+- `PROJEKT.md`: entfernt (internes Sitzungs-Management; gehört in `grad-internal-kb`).
+- `CHANGES.md`: Eintrag v1.3.0.
+
+**Zustand 12.10, verifiziert:** `python3 -m guard bench` → 32/32 grün
+(Exit 0). `pytest tests` → 47/47 grün (0.02 s).
+
+---
+
 ## 2026/10/10 — Prüfung und Korrekturen (v1.2)
 
 - `guardrails/guard.py` (neu): lauffähiger Guardrails-Baustein mit
@@ -43,9 +74,9 @@ werden — aber wenn unsicher, wird es notiert.
   - `README.md`: Selbsttest-Befehl und Verweis auf laufende Bausteine.
 - Was noch fehlt (bewusst dokumentiert):
   - Mehr lauffähige Bausteine hier im Repo (RAG-Kern, Prompt-Basis,
-    Evals) — aktuell nur Verweis auf `gw-shared-lib`, das in der
-    Personal-Org liegt.
-  - Repository `grad-internal-kb-kb` (intern) nicht in `referenzen.md` verlinkt
+    Evals) — aktuell nur Verweis auf `gw-shared-lib`, das ausserhalb
+    dieser Org liegt.
+  - Repository `grad-internal-kb` (intern) nicht in `referenzen.md` verlinkt
     (bewusst: kein interner Link in der öffentlichen Doku).
 
 ## 2026/10/10 — Hub von Marketing-Broschüre zu Engineering-Org
@@ -76,9 +107,9 @@ werden — aber wenn unsicher, wird es notiert.
     «KI-Plattform», «98 % Zufriedenheit»).
 - Quelle:
   - Digital Omnibus VO (EU) 2026/1744 (EUR-Lex), in Kraft seit 27.07.2026
-  - `~/code/gradweight/gw-shared-lib/gw_shared_lib/{rag_core,guardrails,parsers}.py`
-  - `~/code/grad-engineering/doku/architektur.md`
-  - `~/Documents/GRADweight GmbH/50 ai Solution architecture; Engineering/ai-prototypen-katalog.md`
+  - `gw-shared-lib/{rag_core,guardrails,parsers}.py` (Org `eddavv`)
+  - `grad-engineering/doku/architektur.md` (Org)
+  - `ai-prototypen-katalog.md` (Kanon: `grad-internal-kb`, privat)
 - Commit: `d51f0ed` (v1.0, Hub-Grundgerüst) → **dieser Commit** (v1.1, Engineering-Org)
 - Hinweis: **Keine Kunden, keine Preise, keine internen Zahlen** in
   diesem Repo. (Regel aus der `LICENSE`: Alle Rechte vorbehalten.)
