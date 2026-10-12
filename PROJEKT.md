@@ -42,10 +42,10 @@ jeder Code-Pfad des Hubs ist *je Grad* ausgeschrieben:
   IST/ZIEL je Prototyp, 8 fehlende Bausteine, GB-Regeln, Nicht-verkaufen-Liste
 - `~/code/gradweight/gw-prototypen/shared/src/gw_core/` — 13 Bausteine
   (approval, audit, verify, authz, tracing, bexio, …), null Abhängigkeiten, ~40 Tests
-- `~/code/gradweight/gw-prototypen/autonomy/01.json…25.json` + `gradbuild`-Validator (CI)
+- `~/code/gradweight/gw-prototypen/autonomy/01.json…25.json` + `grad-engineering`-Validator (CI)
 - `~/code/gradweight/gw-shared-lib/gw_shared_lib/` — rag_core, guardrails, parsers, auth
-- `~/code/gradmap/doku/gate-modell.md` — Tore G0–G8
-- `~/code/gradbuild/doku/architektur.md` — Multi-Agent, RAG, Guardrails, Deploy
+- `~/code/grad-governance/doku/gate-modell.md` — Tore G0–G8
+- `~/code/grad-engineering/doku/architektur.md` — Multi-Agent, RAG, Guardrails, Deploy
 
 ## 2 · Scope (Entscheidung 2026-10-10)
 
@@ -94,7 +94,7 @@ Commit + Push auf main (oder PR, falls Branch), dann Einschätzung-Update.
 ## 5 · Offene Punkte / Entscheide
 
 - [ ] Lizenz für OSS-Kern (`shared/`): MIT? (aktuell LICENSE = Alle Rechte)
-- [ ] `gw_core` + autonomy-JSONs + gradbuild-Validator als `shared/` in den Hub kopieren
+- [ ] `gw_core` + autonomy-JSONs + grad-engineering-Validator als `shared/` in den Hub kopieren
       (oder Org-Repo `GRADweight/gw-shared`?) — Edin entscheidet Org-Namen
 - [ ] Repo public: ja/nein, wann (voraussetzungen: LICENSE, Security-Scan, Issues/CoC)
 - [ ] Bexio-Sandbox-Tokens für den Beispiel-Durchlauf (fremde Secrets — nie committen)
@@ -116,7 +116,7 @@ Commit + Push auf main (oder PR, falls Branch), dann Einschätzung-Update.
 ## 7 · Nächste Schritte (Reihenfolge)
 
 1. Edin: Lizenz-Entscheid (MIT?) + Org-Namen für den OSS-Kern.
-2. OSS-Kern in den Hub: `shared/` (gw_core + autonomy-JSONs + gradbuild-Validator +
+2. OSS-Kern in den Hub: `shared/` (gw_core + autonomy-JSONs + grad-engineering-Validator +
    Tests) + `examples/` (Rechnungs-Extraktion #02, der einzige Vollgrad-Beleg) + CI.
 3. Doku je Grad umschreiben: `plan.md`, `umsetzen.md`, `wie.md`, `abschluss.md`,
    `inbetriebnahme.md` — jede mit Grad-Spalte 01–05 + GB-Regeln + Baustein-Verweis.

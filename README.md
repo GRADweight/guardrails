@@ -22,9 +22,9 @@ Doku — und darunter ein gemeinsames technisches Fundament.
 
 | Linie | Was sie liefert | Technische Substanz | Repo |
 |---|---|---|---|
-| **GRADtrain** — Menschen | KI-Kompetenz L1→L2→L3 statt Folien-Ablagerung | Praxisaufbau, Kontext-Aufgaben, Orchestrierung eigener Modelle | [gradtrain](https://github.com/GRADweight/gradtrain) (Org) |
-| **GRADmap** — Organisation | Reifegrad, Richtlinie, Gates | Messbare Kriterien, dokumentierte Abweichung, KI-Register | [gradmap](https://github.com/GRADweight/gradmap) (Org) |
-| **GRADbuild** — System | Prozess-Schritte automatisieren (Stufe 1→4) | Multi-Agent, RAG, Guardrails, Audit-Trail, Deployment | [gradbuild](https://github.com/GRADweight/gradbuild) (Org) |
+| **GRADtrain** — Menschen | KI-Kompetenz L1→L2→L3 statt Folien-Ablagerung | Praxisaufbau, Kontext-Aufgaben, Orchestrierung eigener Modelle | [grad-training](https://github.com/GRADweight/grad-training) (Org) |
+| **GRADmap** — Organisation | Reifegrad, Richtlinie, Gates | Messbare Kriterien, dokumentierte Abweichung, KI-Register | [grad-governance](https://github.com/GRADweight/grad-governance) (Org) |
+| **GRADbuild** — System | Prozess-Schritte automatisieren (Stufe 1→4) | Multi-Agent, RAG, Guardrails, Audit-Trail, Deployment | [grad-engineering](https://github.com/GRADweight/grad-engineering) (Org) |
 
 > **Stand 10/2026:** Die drei Service-Linien-Repos sind Org-nur
 > (private). Ausserhalb der Organisation sind sie nicht lesbar —
@@ -231,9 +231,9 @@ folgen, je Linie.
 
 | Repo | Fokus |
 |---|---|
-| [github.com/GRADweight/gradtrain](https://github.com/GRADweight/gradtrain) | **Train** — KI-Kompetenz L1/L2/L3 |
-| [github.com/GRADweight/gradmap](https://github.com/GRADweight/gradmap) | **Map** — Reifegrad, Richtlinie, Gates |
-| [github.com/GRADweight/gradbuild](https://github.com/GRADweight/gradbuild) | **Build** — Automatisierung in Stufen |
+| [github.com/GRADweight/grad-training](https://github.com/GRADweight/grad-training) | **Train** — KI-Kompetenz L1/L2/L3 |
+| [github.com/GRADweight/grad-governance](https://github.com/GRADweight/grad-governance) | **Map** — Reifegrad, Richtlinie, Gates |
+| [github.com/GRADweight/grad-engineering](https://github.com/GRADweight/grad-engineering) | **Build** — Automatisierung in Stufen |
 | → implementierte Bausteine | [`docs/referenzen.md`](docs/referenzen.md) |
 | → vollständige Normen-Fristen | [`docs/souverainetaet-schweiz.md`](docs/souverainetaet-schweiz.md) |
 | → die Künste (Technik) | [`docs/ai-craft.md`](docs/ai-craft.md) |
