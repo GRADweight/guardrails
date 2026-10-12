@@ -1,10 +1,9 @@
 Copyright (c) 2026 GRADweight GmbH
 Alle Rechte vorbehalten.
 
-Dieses Repository enthält die kanonische Wissensbasis der GRADweight GmbH:
-Dienste-Beschreibungen, Prototypen-Katalog, Schweizer Kontext (DSG, AI Act,
-Deployment), News, Präsentationen, sowie die internen Referenzen
-(PPTX, DOCX, XLSX, PDF) und Vorlagen.
+Dieses Repository enthält den Guardrails-Baustein der GRADweight GmbH:
+`guard/` (einlauffähiges Python-Paket) + `guardrails/guard.py`
+(standalone, ohne Installation) + `docs/` (Souveränität, Normen, Grenzen).
 
 Es handelt sich um ein geschütztes Werk im Sinne des Urheberrechtsgesetzes.
 Alle Inhalte sind geistiges Eigentum der GRADweight GmbH.
@@ -15,10 +14,14 @@ nicht gestattet.
 
 ## Ausnahmen und Community
 
-- **`guardrails/guard.py`** ist als Referenz-Baustein bewusst klein
-  und lauffähig gehalten; die Verwendung als Ausgangspunkt für eigenen
-  Code ist erlaubt (Attribution: GRADweight GmbH, guard.py).
-- **Doku-Beiträge** (korrekte Norm-Fristen, Fehler in der Doku,
-  fehlende Technik): willkommen via Pull Request — s. `CONTRIBUTING.md`.
-  Mit einem gemergten PR wird der Beitrag unter derselben Lizenz
-  veröffentlicht (Contributor-Assign, keine gesonderte Abrede nötig).
+- **`guard/` und `guardrails/guard.py`** sind als Referenz-Bausteine
+  bewusst klein und lauffähig gehalten. Die Verwendung als Ausgangspunkt
+  für eigenen Code ist erlaubt, mit Attribution
+  („GRADweight GmbH, guard.py / guard-Paket, v1.3.0").
+- **Beiträge** (korrekte Norm-Fristen, Fehler in der Doku, fehlende
+  Technik, neue Guard-Bench-Cases): willkommen via Pull Request — s.
+  `CONTRIBUTING.md`. Mit einem gemergten PR wird der Beitrag unter
+  derselben Lizenz veröffentlicht (Contributor-Assign, keine gesonderte
+  Abrede nötig).
+- **PyPI-Veröffentlichung:** vorbehalten — der Paket-Name
+  `gradweight-guardrails` gehört GRADweight GmbH.

@@ -9,7 +9,7 @@ __pycache__/
 ~$*
 
 # Keine internen Office-Dokumente in diesem Repo
-# (s. CHANGES.md 2026/10/10 — interne Referenzen gehören in biz-kb)
+# (s. CHANGES.md 2026/10/10 — interne Referenzen gehören in grad-internal-kb)
 material/
 
 # Keine Secrets
@@ -18,3 +18,4 @@ material/
 .env
 .env.*
 !.env.example
+*.egg-info/
