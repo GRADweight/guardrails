@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest*)", "Bash(uv run *)", "Bash(uv sync*)", "Bash(ruff *)", "Bash(gitleaks *)",
+      "Bash(git status*)", "Bash(git diff*)", "Bash(git log*)", "Bash(git add *)",
+      "Bash(git commit *)", "Bash(git switch *)", "Bash(git fetch*)", "Bash(git merge origin/main*)",
+      "Bash(git push -u origin *)", "Bash(git push origin *)",
+      "Bash(gh pr create *)", "Bash(gh pr view *)", "Bash(gh pr checks *)", "Bash(gh run view *)"
+    ],
+    "ask": ["Edit(.github/**)", "Edit(LICENSE)"],
+    "deny": [
+      "Read(*.env)", "Read(.env.*)", "Read(!.env.example)", "Read(*.pem)", "Read(*.key)",
+      "Bash(git push origin main)", "Bash(git push origin main *)", "Bash(git push -u origin main*)",
+      "Bash(git push *:main)", "Bash(git push *:main *)", "Bash(git push *--force*)",
+      "Bash(git push -f*)", "Bash(git push * +*)", "Bash(* --no-verify*)", "Bash(git tag *)",
+      "Bash(gh pr merge *)", "Bash(gh repo delete *)", "Bash(gh repo edit *)", "Bash(gh secret *)",
+      "Bash(gh api *)", "Bash(git filter-repo*)", "Bash(git reset --hard*)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
+  "sandbox": {
+    "enabled": true,
+    "allowUnsandboxedCommands": false,
+    "excludedCommands": ["git commit *", "git push *", "gh pr *", "gh run *"],
+    "filesystem": {"allowWrite": ["~/.cache/uv", "~/.local/share/uv"]},
+    "network": {
+      "allowedDomains": ["github.com", "api.github.com", "codeload.github.com",
+        "objects.githubusercontent.com", "pypi.org", "files.pythonhosted.org"]
+    }
+  }
+}
