@@ -22,6 +22,11 @@ werden — aber wenn unsicher, wird es notiert.
 
 ---
 
+## 2026/10/15 — Claude-Code-Konfiguration
+- `CLAUDE.md`, `.claude/settings.json` (Berechtigungen, Sandbox) und `uv.lock` neu.
+
+---
+
 ## 2026/10/12 — v1.3.0: Guard wird zum lauffähigen Paket mit Guard-Bench
 
 - `guard/` (neu): Python-Paket — `guard/core.py` (die drei Kernfunktionen,
