@@ -40,6 +40,14 @@ _INJECTION_SIGNATURES = (
     "exec (",
     "curl http://",
     "rm -rf /",
+    # v1.4 — neue Attacke-Familien (s. guard/core.py; FP-geprüft in
+    # scripts/verify-new-signatures.py). Bei Signatur-Änderung hier
+    # NACHZIEHEN — der Test tests/test_standalone_sync.py erzwingt Gleichheit.
+    "you are now dan",
+    "act as dan",
+    "bypass all safety",
+    "system prompt:",
+    "unfiltered mode",
 )
 
 _CONFIDENTIAL = ("vertraulich", "secret", "confidential")

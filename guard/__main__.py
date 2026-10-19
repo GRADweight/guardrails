@@ -17,13 +17,15 @@ from guard.bench import run_bench, bench_summary, format_bench_json
 
 def _main(argv: list[str]) -> int:
     if not argv or argv[0] in ("bench", "-b", "--bench"):
+        metrics = "--metrics" in argv
         if argv and argv[-1] == "--json":
-            print(format_bench_json(run_bench()))
+            print(format_bench_json(run_bench(compute_metrics=metrics)))
         else:
             print(f"guard v{guard.__version__}")
-            print(bench_summary(run_bench()))
-        r = run_bench()
-        return 0 if not r["failed"] else 1
+            print(bench_summary(run_bench(compute_metrics=metrics)))
+        r = run_bench(compute_metrics=metrics)
+        ok = not r["failed"] and r.get("regression", {}).get("ok", True)
+        return 0 if ok else 1
 
     if argv[0] in ("--version", "-v"):
         print(f"guard {guard.__version__}")
