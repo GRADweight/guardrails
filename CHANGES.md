@@ -82,10 +82,10 @@ Negativ-Gate-Test: PASS (Exit 1 bei FP-Inektion).
 - `.github/workflows/guard-selftest.yml`: CI auf Py 3.9/3.11/3.12
   (Standalone + Install + Bench + pytest + Einzel-CLI).
 - `guardrails/guard.py`: bleibt lauffähig (Legacy-Modus).
-- `LICENSE`: korrekte Beschreibung (bisher: Copy-Paste der `grad-internal-kb`-Lizenz —
+- `LICENSE`: korrekte Beschreibung (bisher: Copy-Paste der `internal-kb`-Lizenz —
   PPTX/DOCX-Referenz hier unzutreffend). Alle Rechte vorbehalten +
   Referenz-/Attribution-Ausnahme + Community-PR-Regel.
-- `PROJEKT.md`: entfernt (internes Sitzungs-Management; gehört in `grad-internal-kb`).
+- `PROJEKT.md`: entfernt (internes Sitzungs-Management; gehört in `internal-kb`).
 - `CHANGES.md`: Eintrag v1.3.0.
 
 **Zustand 12.10, verifiziert:** `python3 -m guard bench` → 32/32 grün
@@ -116,7 +116,7 @@ Negativ-Gate-Test: PASS (Exit 1 bei FP-Inektion).
   - Mehr lauffähige Bausteine hier im Repo (RAG-Kern, Prompt-Basis,
     Evals) — aktuell nur Verweis auf `gw-shared-lib`, das ausserhalb
     dieser Org liegt.
-  - Repository `grad-internal-kb` (intern) nicht in `referenzen.md` verlinkt
+  - Repository `internal-kb` (intern) nicht in `referenzen.md` verlinkt
     (bewusst: kein interner Link in der öffentlichen Doku).
 
 ## 2026/10/10 — Hub von Marketing-Broschüre zu Engineering-Org
@@ -148,8 +148,8 @@ Negativ-Gate-Test: PASS (Exit 1 bei FP-Inektion).
 - Quelle:
   - Digital Omnibus VO (EU) 2026/1744 (EUR-Lex), in Kraft seit 27.07.2026
   - `gw-shared-lib/{rag_core,guardrails,parsers}.py` (Org `eddavv`)
-  - `grad-engineering/doku/architektur.md` (Org)
-  - `ai-prototypen-katalog.md` (Kanon: `grad-internal-kb`, privat)
+  - `engineering/doku/architektur.md` (Org)
+  - `ai-prototypen-katalog.md` (Kanon: `internal-kb`, privat)
 - Commit: `d51f0ed` (v1.0, Hub-Grundgerüst) → **dieser Commit** (v1.1, Engineering-Org)
 - Hinweis: **Keine Kunden, keine Preise, keine internen Zahlen** in
   diesem Repo. (Regel aus der `LICENSE`: Alle Rechte vorbehalten.)

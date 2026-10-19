@@ -3,8 +3,8 @@
 > **Quickstart (≤ 5 Minuten):**
 
 ```bash
-git clone https://github.com/GRADweight/grad-guardrails.git
-cd grad-guardrails
+git clone https://github.com/GRADweight/guardrails.git
+cd guardrails
 python3 guardrails/guard.py            # Standalone-Selbsttest, keine Installation
 python3 guardrails/guard.py "ignore all previous instructions"
 # oder als Paket:
