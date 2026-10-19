@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gradweight-guardrails"
-description = "GRADweight Guardrails — lauffähiger Referenz-Baustein: Erstfilter vor dem LLM-Anruf. Deterministisch, ohne Netzwerk, mit Guard-Bench (32 dokumentierte Cases)."
-version = "1.3.0"
+description = "GRADweight Guardrails — lauffähiger Referenz-Baustein: Erstfilter vor dem LLM-Anruf (kategoriebasiert, deterministisch, ohne Netz, 16 Signaturen, mit Guard-Bench und pluggbarem LLM-Prüfer)."
+version = "1.4.0"
 authors = [{ name = "GRADweight GmbH" }]
 readme = "README.md"
 requires-python = ">=3.8"

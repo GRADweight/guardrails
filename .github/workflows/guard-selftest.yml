@@ -2,7 +2,7 @@ name: guard-tests
 
 # CI für das Guardrails-Paket:
 #   1. Legacy-Selbsttest (guardrails/guard.py — ohne Installation)
-#   2. Guard-Bench (32 dokumentierte Cases, deterministisch)
+#   2. Guard-Bench (42 dokumentierte Cases, deterministisch)
 #   3. pytest-Suite (Py 3.9/3.11/3.12)
 # Kein Netzwerk nötig (outgoing nur für pip).
 
@@ -51,7 +51,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
-      - name: "Guard-Bench (32 dokumentierte Cases)"
+      - name: "Guard-Bench (42 dokumentierte Cases)"
         run: |
           echo '=== GUARD-BENCH ==='
           python -m guard bench

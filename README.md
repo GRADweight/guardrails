@@ -72,20 +72,21 @@ Der komplette Baustein ist in diesem Repo lauffähig — als Paket
 (`guard/`) und als Standalone-Datei (`guardrails/guard.py`):
 
 ```bash
-python3 -m guard bench                 # Guard-Bench: 32 dokumentierte Cases
+python3 -m guard bench                 # Guard-Bench: 42 dokumentierte Cases
 python3 -m guard "<eigener Input>"     # Einzelprüfung
 python3 guardrails/guard.py            # Standalone-Selbsttest (keine Installation)
 ```
 
 **Guard-Bench** (`guard/bench_data/guard-bench.json`) ist kein Selbstlob —
-es ist ein wiederholbares Korpus von 32 Cases in vier Kategorien
+es ist ein wiederholbares Korpus von 42 Cases in vier Kategorien
 (`legit`, `inj`, `adv`, `edge`). Jeder Case trägt eine `note` mit der
 Begründung des erwarteten Verhaltens. **Die Grenzen sind Teil des
 Nachweises:** Base64-verpackte Injections, Whitespace-Aufweitung und
 Zeilenumbrüche entkommen dem Zeichenfolgen-Filter — das steht im Corpus
-als `adv-01…03` mit `expect: pass`. Das ist kein Zufall, sondern der
-geprüfte Zustand; die Abdeckung liegt in der LLM-Guard-Schicht
-(dann: `guard/bench.py` als Contract, LLM-Guard als Implementierung).
+als `adv-01…03` (Plus `adv-06` Unicode) mit `expect: pass`. Das ist kein
+Zufall, sondern der geprüfte Zustand; die Abdeckung liegt in der
+LLM-Guard-Schicht (dann: `guard/bench.py` als Contract, LLM-Guard als
+Implementierung).
 
 ```python
 # guard/core.py — erster Filter, läuft VOR dem LLM
@@ -109,6 +110,39 @@ Signatur-Listfilter kann und was nicht, zeigt die Guard-Bench —
 die komplette Liste mit Kategorien, Cases und Grenzen in
 [`guard/bench_data/guard-bench.json`](guard/bench_data/guard-bench.json),
 technische Tiefe in [`docs/ai-craft.md`](docs/ai-craft.md).
+
+### Zwei Schichten — Signatur und Prüfer
+
+`guard/core.py` ist die **Signatur-Schicht** (deterministisch, null Netz,
+null externe Abhängigkeit — läuft in jedem Kramkasten). Semantische
+Varianten entkommen (dokumentiert: `adv-01…06`). Für diese liegt die
+**zweite Schicht**:
+
+- `guard/judge.py` — der `Judge`: ein pluggbares Prüf-Interface.
+  `DummyJudge` (Offline-Default, deterministisch, für CI/Tests),
+  `LLMJudge` (eigene Implementierung für Produktion, z. B. via
+  `openai` oder `anthropic`). **Fail-closed**: bei Fehler blockt der
+  Prüfer, nicht *durchlässt*.
+- `guard/gate.py` — `GuardPipeline`, die beide Schichten komponiert:
+  Signatur-Schicht → Prüfer → `GuardResult` mit Kategorie + Grund.
+
+```python
+from guard import GuardPipeline, LLMJudge
+# Für Produktion: echter LLM-Caller
+pipe = GuardPipeline(judge=LLMJudge(caller=my_llm_caller))
+res = pipe.run(user_input)
+if res.blocked:
+    # Signatur oder Prüfer hat blockiert — res.reason + res.categories
+    ...
+```
+
+Die **Signatur-Schicht bleibt die Basis**: schnell, deterministisch,
+keine Abhängigkeit. Die zweite Schicht ergänzt das, was der Filter
+nicht kann — ohne den Filter zu verstecken. Die Guard-Bench mit
+Regression-Snapshot (`guard/bench_data/guard-bench-baseline.json`
++ `tests/test_bench_regression.py`) blockt jeden PR, der ein
+False-Positive auf legitmen Cases erzeugt — ein beweisbarer Gate
+(s. `scripts/negative-gate-test.py`, der den Gate fälschlich triggert).
 
 ### Der Request-Pfad in einem System
 
@@ -234,8 +268,8 @@ oder die Forderung, es müsse jetzt «ein Chatbot wie X». Wir bauen
 KMU-Systeme, die nach zwei Jahren noch laufen — das hat Priorität.
 
 **Und wir zeigen es:** `python3 -m guard bench` läuft in diesem Repo —
-**32 dokumentierte Guard-Bench-Cases** (erkannt / entkommt / dokumentierte
-Grenze), dazu 47 pytest-Tests im [`tests/`-Ordner](tests/) und eine CI
+**42 dokumentierte Guard-Bench-Cases** (erkannt / entkommt / dokumentierte
+Grenze), dazu 51 pytest-Tests im [`tests/`-Ordner](tests/) und eine CI
 über Python 3.9/3.11/3.12. Mehr lauffähige Bausteine folgen, je Linie.
 
 ---

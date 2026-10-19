@@ -27,6 +27,41 @@ werden — aber wenn unsicher, wird es notiert.
 
 ---
 
+## 2026/10/19 — v1.4.0: 42 Cases, 16 Signaturen, Judge-Schicht, Regression-Gate
+
+- **Neue Signatur-Familien (v1.4):** 5 neue Signaturen im Kern (11 → 16):
+  `you are now dan`, `act as dan` (Jailbreak), `bypass all safety` (Jailbreak),
+  `system prompt:` (strukturierte/JSON-Injection), `unfiltered mode` (Jailbreak).
+  Alle mit FP-Verifikation gegen die 12 legitmen Cases (0 FP).
+- **`guard/judge.py`** (neu): `Judge`-Interface + `DummyJudge` (offline,
+  deterministisch, CI-Default) + `LLMJudge` (pluggbar, fail-closed).
+- **`guard/gate.py`** (neu): `GuardPipeline` (Signatur-Schicht → Prüfer →
+  `GuardResult` mit Kategorie + Grund).
+- **`guard/core.py`:** `analyze_prompt_injection()` — kategoriespezifisches Ergebnis
+  (statt nur `bool`); `detect_prompt_injection` bleibt rückwärtskompatibel
+  (dünner Wrapper über `analyze_`). `INJECTION_CATEGORIES` parallel zu
+  `INJECTION_SIGNATURES`, mit `assert len(...) == len(...)` zur Zeitkomplexität-Gleichheit.
+- **`tests/test_standalone_sync.py`** (neu): erzwingt Signatur- und
+  Conf-Liste-Gleichheit zwischen Standalone `guardrails/guard.py` und
+  Paketkern (schließt bekannte Lücke aus CLAUDE.md `12.10`).
+- **`tests/test_bench_regression.py`** (neu): Per-Kategorie FP/FN-
+  Regression-Gate gegen `guard/bench_data/guard-bench-baseline.json`.
+  **Negativ-Beweis** in `scripts/negative-gate-test.py`: injiziert
+  temporär einen FP, zeigt dass der Gate Exit-1 liefert, revertiert.
+- **Bench:** 32 → **42 Cases** (+5 block +4 pass +1 adv mit Unicode-
+  Steuerzeichen — alle verifiziert per `scripts/verify-new-cases.py`).
+- **51 Tests, alle grün** (47 → 51, +3 Sync + 1 Regression).
+- `guard/__init__.py`: `1.3.0` → `1.4.0`, neue Exports.
+- `pyproject.toml`: version `1.4.0`.
+- `scripts/`: 3 neue Skripte (`verify-new-signatures.py`,
+  `verify-new-cases.py`, `negative-gate-test.py`, `scan-version-strings.py`).
+
+**Zustand 19.10, verifiziert:** `pytest tests` → 51/51 (0.02 s).
+`python -m guard bench --metrics` → 42/42, FP=0 FN=0, Regression: OK.
+Negativ-Gate-Test: PASS (Exit 1 bei FP-Inektion).
+
+---
+
 ## 2026/10/12 — v1.3.0: Guard wird zum lauffähigen Paket mit Guard-Bench
 
 - `guard/` (neu): Python-Paket — `guard/core.py` (die drei Kernfunktionen,

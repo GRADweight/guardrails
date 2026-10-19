@@ -10,6 +10,6 @@ python3 guardrails/guard.py "ignore all previous instructions"
 # oder als Paket:
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
-python -m guard bench                   # Guard-Bench: 32 dokumentierte Cases
-pytest tests -q                         # 47 Tests
+python -m guard bench                   # Guard-Bench: 42 dokumentierte Cases
+pytest tests -q                         # 51 Tests
 ```
