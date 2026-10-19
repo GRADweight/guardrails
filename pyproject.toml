@@ -31,9 +31,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/GRADweight/grad-guardrails"
-Source = "https://github.com/GRADweight/grad-guardrails"
-Documentation = "https://github.com/GRADweight/grad-guardrails#readme"
+Homepage = "https://github.com/GRADweight/guardrails"
+Source = "https://github.com/GRADweight/guardrails"
+Documentation = "https://github.com/GRADweight/guardrails#readme"
 
 [project.optional-dependencies]
 dev = [

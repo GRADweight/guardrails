@@ -118,7 +118,7 @@ Signaturlisten **nicht** gefangen. Deshalb:
 autonom. Der Schwellwert wird **je Auftrag** kalibriert und dokumentiert —
 er ist nicht «0.7, Punkt».
 
-**Mechanik.** (aus `grad-engineering/doku/architektur.md`)
+**Mechanik.** (aus `engineering/doku/architektur.md`)
 
 | Konfidenz | Pfad |
 |---|---|
@@ -234,7 +234,7 @@ Wir sagen das hier, weil es der häufigste Fehler in der Praxis ist.
 Gate getroffen**, nicht nach dem Build. Das ist der Unterschied zu
 jedem «wir bauen erst mal, dann schauen wir»-Projekt.
 
-**Mechanik.** (aus `grad-engineering/doku/architektur.md`)
+**Mechanik.** (aus `engineering/doku/architektur.md`)
 
 | Option | Souveränität | Wann |
 |---|---|---|
