@@ -68,6 +68,7 @@ zweite Schicht: `python3 -m guard "<eigener Input>"`.
 - ✅ **lauffahig:** Signatur-Schicht + pluggbarer Prufer + Regressions-Snapshot pro PR.
 - ⏳ **Next Step:** ein lauffahriger LLM-Judge-Preset fur ein gangiges Modell als Demo.
 
+- **Lizenz:** MIT (frei nutzbar, s. `LICENSE`)
 > **Ehrliche Grenze:** der Signatur-Filter erkennt Zeichenfolgen. Semantische
 > Tarnung (Base64, Zeilenumbruche) entkommt ihm — das ist in `adv-01…06`
 > *dokumentiert* und an Layer 2 delegiert. Nicht versteckt.
