@@ -75,7 +75,3 @@ zweite Schicht: `python3 -m guard "<eigener Input>"`.
 
 > Teil von GRADweight — KMU-AI-Architektur-Netzwerk.
 > Finde uns: github.com/GRADweight | Frage? Eroffne ein Issue.
-
-
----
-> **Pruefen vor Public:** `SICHERHEIT_UND_GRENZEN.md` — Bekannte Fehler, Haftung, Lizenz-Erklaerung (ein Satz je Repo).
