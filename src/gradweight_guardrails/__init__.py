@@ -21,6 +21,7 @@ weder minimale Berechtigungen noch menschliche Freigaben für folgenreiche Aktio
 
 from __future__ import annotations
 
+from .engine import EngineConfig
 from .guard import AuditEvent, Guard, GuardConfig, JudgeMode, scan, scan_document, scan_tool_input
 from .judge import JudgeError, JudgeVerdict, OpenAICompatibleJudge
 from .models import Category, Context, Decision, Finding, JudgeOutcome, ScanResult, Severity
@@ -37,6 +38,7 @@ __all__ = [
     "Category",
     "Context",
     "Decision",
+    "EngineConfig",
     "Finding",
     "Guard",
     "GuardConfig",

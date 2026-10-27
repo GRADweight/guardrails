@@ -82,9 +82,19 @@ def render_catalog() -> str:
         "|---|---|---|---|---|---|",
     ]
     for entry in catalog():
-        examples = "; ".join(f"«{e}»" for e in entry["examples"]) or "–"
+        examples = "; ".join(_code(e) for e in entry["examples"]) or "–"
         lines.append(
             f"| {entry['id']} | {entry['scope']} | {entry['category']} | {entry['severity']} | "
-            f"{entry['description']} | {examples} |"
+            f"{_cell(entry['description'])} | {examples} |"
         )
     return "\n".join(lines) + "\n"
+
+
+def _cell(text: str) -> str:
+    """Tabellenzelle: Pipe maskieren, spitze Klammern als Entitäten (sonst als HTML gedeutet)."""
+    return text.replace("|", "\\|").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def _code(text: str) -> str:
+    """Beispiel als Code-Span; in GitHub-Tabellen muss die Pipe auch dort maskiert werden."""
+    return "`" + text.replace("`", "'").replace("|", "\\|") + "`"
