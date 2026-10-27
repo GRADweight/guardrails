@@ -1,52 +1,121 @@
 [build-system]
-requires = ["setuptools>=68.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
 
 [project]
 name = "gradweight-guardrails"
-description = "GRADweight Guardrails — lauffähiger Referenz-Baustein: Erstfilter vor dem LLM-Anruf (kategoriebasiert, deterministisch, ohne Netz, 16 Signaturen, mit Guard-Bench und pluggbarem LLM-Prüfer)."
-version = "1.4.0"
-authors = [{ name = "GRADweight GmbH" }]
+dynamic = ["version"]
+description = "Mehrschichtige Abwehr gegen Prompt-Injection (DE/FR/IT/EN): Normalisierung, Regeln, Spotlighting, Output-Guard, optionaler LLM-Judge."
 readme = "README.md"
-requires-python = ">=3.8"
-# **Bewusst KEINE externen Abhängigkeiten.**
-# Der Guard ist der Erste Filter — er muss in jedem Kramkasten laufen.
-# Für Produktion: zusätzlich ein LLM-basiertes Guardrail (s. README).
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "GRADweight GmbH", email = "mail@gradweight.ch" }]
+requires-python = ">=3.10"
 dependencies = []
-license = { text = "All Rights Reserved (s. LICENSE)" }
+keywords = ["prompt-injection", "llm", "security", "guardrails", "spotlighting", "pii"]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "Natural Language :: German",
     "Natural Language :: English",
+    "Natural Language :: French",
+    "Natural Language :: German",
+    "Natural Language :: Italian",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Security",
-    "Topic :: Software Development :: Libraries :: Application Modules",
+    "Typing :: Typed",
 ]
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2",
+    "fastapi>=0.115",
+    "httpx>=0.27",
+    "hypothesis>=6.100",
+    "mypy>=1.13",
+    "pytest>=8.3",
+    "pytest-cov>=5.0",
+    "ruff>=0.8",
+]
+
+[project.scripts]
+gradweight-guardrails = "gradweight_guardrails.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/GRADweight/guardrails"
 Source = "https://github.com/GRADweight/guardrails"
-Documentation = "https://github.com/GRADweight/guardrails#readme"
+Issues = "https://github.com/GRADweight/guardrails/issues"
+Changelog = "https://github.com/GRADweight/guardrails/blob/main/CHANGELOG.md"
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
+[tool.hatch.version]
+path = "src/gradweight_guardrails/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gradweight_guardrails"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/gradweight_guardrails",
+    "tests",
+    "bench",
+    "docs",
+    "examples",
+    "scripts",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
 ]
 
-[tool.setuptools.packages.find]
-include = ["guard*"]
-exclude = ["guard.bench_data*"]
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["bench/data"]
 
-[tool.setuptools.package-data]
-guard = ["bench_data/*.json"]
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "S", "C4", "PT", "RET", "PIE", "BLE"]
+ignore = [
+    "RUF001",  # mehrdeutige Unicode-Zeichen sind hier Absicht (Homoglyph-Erkennung)
+    "RUF002",
+    "RUF003",
+    "SIM905",  # Wortlisten als """...""".split() sind hier lesbarer als Listenliterale
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "S108", "S310", "S603", "S607", "BLE001"]
+"scripts/**" = ["S603", "S607"]
+"examples/**" = ["S101"]
+
+[tool.mypy]
+strict = true
+python_version = "3.10"
+files = ["src", "scripts", "examples", "tests"]
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_decorators = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-v --tb=short"
+addopts = "-ra --strict-markers --strict-config"
+xfail_strict = true
+
+[tool.coverage.run]
+source = ["gradweight_guardrails"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "\\.\\.\\.",
+]
