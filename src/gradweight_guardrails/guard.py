@@ -24,7 +24,7 @@ import logging
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from .engine import EngineConfig, analyze, risk_score
 from .judge import Judge, JudgeVerdict
@@ -44,7 +44,7 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 
-class JudgeMode(str, enum.Enum):
+class JudgeMode(enum.StrEnum):
     """Wann der Judge gefragt wird."""
 
     NEVER = "never"
@@ -222,7 +222,7 @@ class Guard:
             return result
         judge = result.judge
         event = AuditEvent(
-            timestamp=datetime.now(timezone.utc).isoformat(timespec="milliseconds"),
+            timestamp=datetime.now(UTC).isoformat(timespec="milliseconds"),
             context=result.context.value,
             decision=result.decision.value,
             rule_decision=result.rule_decision.value,

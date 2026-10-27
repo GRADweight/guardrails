@@ -80,3 +80,36 @@ def test_module_entry_point_and_version() -> None:
         check=False,
     )
     assert blocked.returncode == 4
+
+
+def test_input_errors_give_exit_code_2_without_traceback(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    broken = tmp_path / "dev.jsonl"
+    broken.write_text("{kein json\n", "utf-8")
+    assert main(["bench", "--data", str(tmp_path), "--split", "dev"]) == 2
+    err = capsys.readouterr().err
+    assert err.startswith("Fehler:")
+    assert "Traceback" not in err
+    data = str(ROOT / "bench" / "data")
+    assert main(["bench", "--data", data, "--split", "dev", "--baseline", str(tmp_path / "fehlt.json")]) == 2
+    bad_baseline = tmp_path / "b.json"
+    bad_baseline.write_text("{}", "utf-8")
+    assert main(["bench", "--data", data, "--split", "dev", "--baseline", str(bad_baseline)]) == 2
+    with pytest.raises(SystemExit) as info:
+        main(["scan", "--tool", "nope", "x"])
+    assert info.value.code == 2
+
+
+def test_invalid_stdin_encoding_gives_exit_code_2(tmp_path: Path) -> None:
+    payload = tmp_path / "in.bin"
+    payload.write_bytes(b"\xff\xfe\xfa ungueltig")
+    with payload.open("rb") as handle:
+        result = subprocess.run(
+            [sys.executable, "-m", "gradweight_guardrails", "scan"],
+            stdin=handle,
+            capture_output=True,
+            text=True,
+            check=False,
+            env={"PYTHONIOENCODING": "utf-8", "PATH": ""},
+        )
+    assert result.returncode == 2
+    assert "Traceback" not in result.stderr

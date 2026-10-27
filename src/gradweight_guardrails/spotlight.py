@@ -46,7 +46,7 @@ _WHITESPACE = re.compile(r"\s+")
 _RANDOM = secrets.SystemRandom()
 
 
-class SpotlightMode(str, enum.Enum):
+class SpotlightMode(enum.StrEnum):
     """Variante des Spotlightings."""
 
     DATAMARK = "datamark"

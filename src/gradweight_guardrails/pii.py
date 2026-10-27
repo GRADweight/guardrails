@@ -19,7 +19,7 @@ from dataclasses import dataclass
 __all__ = ["PiiKind", "PiiMatch", "ahv_valid", "find_pii", "iban_valid", "luhn_valid", "redact_pii"]
 
 
-class PiiKind(str, enum.Enum):
+class PiiKind(enum.StrEnum):
     AHV = "ahv"
     IBAN = "iban"
     CREDIT_CARD = "credit_card"

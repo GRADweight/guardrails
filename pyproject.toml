@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "GRADweight GmbH", email = "mail@gradweight.ch" }]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = []
 keywords = ["prompt-injection", "llm", "security", "guardrails", "spotlighting", "pii"]
 classifiers = [
@@ -23,10 +23,10 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Security",
     "Typing :: Typed",
 ]
@@ -68,12 +68,14 @@ include = [
     "scripts",
     "README.md",
     "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
     "LICENSE",
 ]
 
 [tool.ruff]
 line-length = 120
-target-version = "py310"
+target-version = "py311"
 extend-exclude = ["bench/data"]
 
 [tool.ruff.lint]
@@ -92,7 +94,7 @@ ignore = [
 
 [tool.mypy]
 strict = true
-python_version = "3.10"
+python_version = "3.11"
 files = ["src", "scripts", "examples", "tests"]
 warn_unreachable = true
 

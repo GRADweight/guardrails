@@ -17,7 +17,7 @@ __all__ = [
 ]
 
 
-class Decision(str, enum.Enum):
+class Decision(enum.StrEnum):
     """Ergebnis einer Prüfung. Die Reihenfolge ALLOW < REVIEW < BLOCK ist die Strenge."""
 
     ALLOW = "allow"
@@ -41,7 +41,7 @@ class Decision(str, enum.Enum):
 _DECISION_RANK = {Decision.ALLOW: 0, Decision.REVIEW: 1, Decision.BLOCK: 2}
 
 
-class Severity(str, enum.Enum):
+class Severity(enum.StrEnum):
     """Schweregrad eines Befunds. Das Gewicht fliesst in den Risikowert ein."""
 
     LOW = "low"
@@ -76,7 +76,7 @@ _SEVERITY_WEIGHT = {
 }
 
 
-class Category(str, enum.Enum):
+class Category(enum.StrEnum):
     """Regelfamilie eines Befunds."""
 
     INSTRUCTION_OVERRIDE = "instruction_override"
@@ -99,7 +99,7 @@ class Category(str, enum.Enum):
     JUDGE = "judge"
 
 
-class Context(str, enum.Enum):
+class Context(enum.StrEnum):
     """Einsatzkontext einer Prüfung."""
 
     CHAT = "chat"

@@ -1,7 +1,9 @@
 """Kommandozeile: ``python -m gradweight_guardrails scan|bench|rules``.
 
-Exit-Codes von ``scan``: 0 = ALLOW, 3 = REVIEW, 4 = BLOCK (2 ist für Bedienfehler reserviert).
+Exit-Codes von ``scan``: 0 = ALLOW, 3 = REVIEW, 4 = BLOCK.
 Exit-Code von ``bench``: 0 = ok, 1 = Regression gegenüber der Baseline.
+Exit-Code 2 bei Bedien- und Eingabefehlern (falsche Argumente, fehlende oder ungültige Dateien,
+nicht lesbare Eingabe); dann erscheint eine Meldung auf stderr, kein Traceback.
 """
 
 from __future__ import annotations
@@ -29,6 +31,7 @@ from .models import Decision, ScanResult
 __all__ = ["main"]
 
 EXIT_CODES = {Decision.ALLOW: 0, Decision.REVIEW: 3, Decision.BLOCK: 4}
+EXIT_USAGE = 2
 SPLITS = ("dev", "holdout")
 
 
@@ -68,8 +71,8 @@ def _cmd_bench(args: argparse.Namespace) -> int:
     for split in splits:
         path = data / f"{split}.jsonl"
         if not path.exists():
-            print(f"Datensatz fehlt: {path}", file=sys.stderr)
-            return 2
+            print(f"Fehler: Datensatz fehlt: {path}", file=sys.stderr)
+            return EXIT_USAGE
         results[split] = evaluate(load_cases(path))
         hashes[path.name] = sha256_file(path)
     if args.json:
@@ -117,7 +120,7 @@ def _cmd_rules(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="python -m gradweight_guardrails",
+        prog="gradweight-guardrails",
         description="Prompt-Injection-Abwehr (DE/FR/IT/EN): prüfen, Benchmark, Regelkatalog.",
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
@@ -149,7 +152,12 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
-    code: int = args.func(args)
+    try:
+        code: int = args.func(args)
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        # Eingabefehler (Datei fehlt, ungültiges JSON/JSONL, falsche Kodierung) sauber melden.
+        print(f"Fehler: {type(exc).__name__}: {exc}", file=sys.stderr)
+        return EXIT_USAGE
     return code
 
 

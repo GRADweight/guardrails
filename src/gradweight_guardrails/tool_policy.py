@@ -31,7 +31,7 @@ from .normalize import normalize
 __all__ = ["TOOL_RULES", "Tool", "ToolPolicy", "ToolRule", "analyze_tool_input"]
 
 
-class Tool(str, enum.Enum):
+class Tool(enum.StrEnum):
     """Art des Werkzeugs, das die Eingabe ausführen wird."""
 
     SHELL = "shell"
