@@ -159,7 +159,17 @@ def _tokens(text: str) -> list[str]:
     return _TOKEN.findall(text)
 
 
+_MODALS = frozenset("do does did must should shall will would can could may might".split())
+_IT_VERB = re.compile(render(A(lx.OVERRIDE_VERB, "it"), "words") + r"\Z")
+_FR_NEGATION_TAIL = frozenset({"pas", "plus", "jamais", "rien", "point"})
+
+
 def _not_negated(verb_alternation: str) -> Validator:
+    """Erkennt grammatisch gebundene Verneinung («vergiss nicht», «don't forget», «n'oublie pas»).
+
+    Ein einzelnes Wort vor dem Verb genügt nicht: «n Ignore all …» oder «non ignore …» sind
+    keine Verneinung, sondern ein Umgehungsversuch.
+    """
     verb_re = re.compile(render(verb_alternation, "words"))
 
     def check(mc: MatchContext) -> bool:
@@ -168,20 +178,26 @@ def _not_negated(verb_alternation: str) -> Validator:
         text = mc.view.text
         start = mc.match.start()
         verb = verb_re.match(text, start)
+        verb_text = verb.group() if verb is not None else ""
+        after = _tokens(text[verb.end() : verb.end() + 40]) if verb is not None else []
         before = _tokens(text[max(0, start - 24) : start])
-        if before:
-            last = before[-1]
-            if last in lx.NEGATORS:
-                return False
-            if last == "t" and len(before) > 1 and before[-2] in ("don", "doesn", "didn", "won"):
-                return False
-            if len(before) > 1 and before[-2] in ("do", "does", "did") and last == "not":
-                return False
-        if verb is not None:
-            after = _tokens(text[verb.end() : verb.end() + 16])
-            if after and after[0] in ("nicht", "pas", "not", "nie", "mai", "niemals"):
-                return False
-        return True
+        last = before[-1] if before else ""
+        previous = before[-2] if len(before) > 1 else ""
+        negated = (
+            # Englisch: don't / do not / never / must not …
+            (last == "t" and previous in ("don", "doesn", "didn", "won", "mustn", "shouldn"))
+            or last in ("dont", "never")
+            or (last == "not" and previous in _MODALS)
+            # Französisch: ne/n' … pas/plus/jamais
+            or (last in ("ne", "n") and bool(_FR_NEGATION_TAIL & set(after[:3])))
+            or last == "jamais"
+            # Italienisch: non + italienisches Verb
+            or (last in ("non", "mai") and bool(_IT_VERB.match(verb_text)))
+            # Deutsch: «nicht vergessen» (Infinitiv) oder «vergiss nicht»
+            or (last in ("nicht", "nie", "niemals") and verb_text.endswith("en"))
+            or (bool(after) and after[0] in ("nicht", "nie", "niemals"))
+        )
+        return not negated
 
     return check
 

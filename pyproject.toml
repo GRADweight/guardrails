@@ -104,9 +104,13 @@ disallow_untyped_decorators = false
 testpaths = ["tests"]
 addopts = "-ra --strict-markers --strict-config"
 xfail_strict = true
+filterwarnings = [
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]
 
 [tool.coverage.run]
 source = ["gradweight_guardrails"]
+omit = ["*/gradweight_guardrails/__main__.py"]
 branch = true
 
 [tool.coverage.report]

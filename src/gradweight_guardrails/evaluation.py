@@ -212,9 +212,11 @@ def _metrics_row(label: str, results: Sequence[CaseResult]) -> str:
     m = metrics_for(results)
     b = metrics_for(results, blocked_only=True)
     attacks = sum(r.case.is_attack for r in results)
+    # Ohne Angriffe in der Gruppe sind Precision, Recall und F1 nicht aussagekräftig.
+    precision, f1 = (m.precision, m.f1) if attacks else (None, None)
     return (
-        f"| {label} | {len(results)} | {attacks} | {len(results) - attacks} | {_pct(m.precision)} | "
-        f"{_pct(m.recall)} | {_pct(m.f1)} | {_pct(m.fpr)} | {_pct(b.recall)} | {_pct(b.fpr)} |"
+        f"| {label} | {len(results)} | {attacks} | {len(results) - attacks} | {_pct(precision)} | "
+        f"{_pct(m.recall)} | {_pct(f1)} | {_pct(m.fpr)} | {_pct(b.recall)} | {_pct(b.fpr)} |"
     )
 
 

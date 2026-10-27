@@ -63,6 +63,7 @@ JUDGE_CATEGORIES = (
 _REQUIRED_KEYS = frozenset({"verdict", "category", "confidence", "reason"})
 _MAX_RESPONSE_BYTES = 1_000_000
 _MAX_REASON_CHARS = 500
+_BOUNDARY_LIKE = re.compile(r"<</?\s*UNTRUSTED[^>]{0,80}>>", re.IGNORECASE)
 
 
 class JudgeError(Exception):
@@ -312,7 +313,9 @@ class OpenAICompatibleJudge:
             text = text[:half] + "\n[…gekürzt…]\n" + text[-half:]
         boundary = delimit("", language="en").boundary or ""
         begin, end = f"<<UNTRUSTED_{boundary}>>", f"<</UNTRUSTED_{boundary}>>"
-        marked = datamark(text.replace(begin, "").replace(end, ""), language="en")
+        # Jede Zeichenfolge, die wie eine Grenze aussieht, wird entfernt (auch mit geratener Kennung).
+        cleaned = _BOUNDARY_LIKE.sub("", text)
+        marked = datamark(cleaned, language="en")
         system = _SYSTEM_PROMPT.format(
             begin=begin,
             end=end,

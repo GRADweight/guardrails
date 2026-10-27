@@ -492,7 +492,6 @@ FIRST_PERSON = frozenset(
     "my mine i me meine meinen meiner meinem mein meines ich mir mich ma mon mes je moi mia mio mie miei io".split()
 )
 
-NEGATORS = frozenset("not never nicht nie niemals ne n non mai jamais pas dont".split())
 
 # --------------------------------------------------------------------------- Rollen
 PERSONA_FRAME: Vocab = {

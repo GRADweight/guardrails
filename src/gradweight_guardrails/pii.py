@@ -185,7 +185,7 @@ def find_pii(
             add(PiiKind.EMAIL, match.span(), True)
     if PiiKind.PHONE_CH in wanted:
         for match in _PHONE.finditer(text):
-            digits = _digits(match.group())
+            digits = _digits(match.group().replace("(0)", ""))
             national = (
                 digits[2:] if digits.startswith("41") else digits[4:] if digits.startswith("0041") else digits[1:]
             )
