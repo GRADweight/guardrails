@@ -76,6 +76,7 @@ def test_license_is_plain_mit() -> None:
     assert "Development Status :: 4 - Beta" in classifiers
     assert not any("Production/Stable" in c or c.startswith("License ::") for c in classifiers)
     assert meta["Requires-Python"] == ">=3.11"
+    assert "Python ≥ 3.11" in _read("README.md")
 
 
 def test_numbers_in_docs_match_code() -> None:

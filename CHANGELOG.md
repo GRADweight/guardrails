@@ -6,7 +6,7 @@ Alle wesentlichen Änderungen an diesem Projekt. Format nach
 
 ## [2.0.0] – 2026-10-27
 
-Neuaufbau. Die Version 1.x bestand aus einer Liste von 16 englischen Teilstrings und einem
+Neuaufbau. Die Version 1.x bestand aus einer kurzen Liste englischer Teilstrings und einem
 Benchmark, der bekannte Umgehungen als «erwartet: durchlassen» zählte. Diese Version ersetzt sie
 vollständig.
 
@@ -58,5 +58,5 @@ weiterleiten.
 
 ## [1.4.0] – 2026-10-19
 
-Signaturliste mit 16 Einträgen, Judge-Schnittstelle als Stub, Benchmark mit 42 Fällen. Ersetzt
-durch 2.0.0.
+Signaturliste mit englischen Teilstrings, Judge-Schnittstelle als Stub, kleiner Benchmark.
+Ersetzt durch 2.0.0.
