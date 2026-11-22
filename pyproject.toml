@@ -13,7 +13,7 @@ requires-python = ">=3.8"
 # Der Guard ist der Erste Filter — er muss in jedem Kramkasten laufen.
 # Für Produktion: zusätzlich ein LLM-basiertes Guardrail (s. README).
 dependencies = []
-license = { text = "All Rights Reserved (s. LICENSE)" }
+license = { text = "MIT" }
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
