@@ -48,15 +48,15 @@ Wenn Sie den Code hinter einer Doku-Behauptung sehen wollen:
 
 | Baustein | Was es ist | Ort (GRADweight-Org) |
 |---|---|---|
-| **RAG-Kern** | Chunking, Embeddings, Qdrant, Retrieval, Antwort mit Quellenangabe | `gw-shared-lib → gw_shared_lib/rag_core.py` |
-| **Dokument-Parser** | PDF (pdfplumber), Word (python-docx), optionales OCR | `gw-shared-lib → gw_shared_lib/parsers.py` |
-| **Guardrails (LangChain-Kontext)** | gleiche Logik wie hier + Retrieval-Framework | `gw-shared-lib → gw_shared_lib/guardrails.py` |
-| **Auth-Helfer** | MSAL, Token-Handling, Microsoft-Identitäten | `gw-shared-lib → gw_shared_lib/auth_helpers.py` |
-| **RAG-Chatbot** (Produkt 1) | FastAPI + Streamlit über interne Dokumente | `gw-rag-chatbot → code/app.py` |
-| **Angebots-Katalog** | 26 Angebots-Doks (PoC 01–26); **2** davon als Prototyp implementiert (`01-rag-chatbot`, `02-rechnungs-extraktion`), die übrigen als Angebots-Dokumentation | `gw-prototypen → docs/`, `prototypes/` |
-| **Architektur-Prinzipien** (Service-Linie) | Multi-Agent, RAG, Deployment-Souveränität, Audit-Trail | `engineering → doku/architektur.md` |
-| **Gate-Modell** (Goverance) | Gates G0–G8 | `governance → doku/gate-modell.md` |
-| **Stufen-Modell** (Engineering) | Stufe 1–4 (Assistent → Autonom) | `engineering → doku/stufen.md` |
+| **RAG-Kern** | Chunking, Embeddings, Qdrant, Retrieval, Antwort mit Quellenangabe | `shared-lib → gw_shared_lib/rag_core.py` |
+| **Dokument-Parser** | PDF (pdfplumber), Word (python-docx), optionales OCR | `shared-lib → gw_shared_lib/parsers.py` |
+| **Guardrails (LangChain-Kontext)** | gleiche Logik wie hier + Retrieval-Framework | `shared-lib → gw_shared_lib/guardrails.py` |
+| **Auth-Helfer** | MSAL, Token-Handling, Microsoft-Identitäten | `shared-lib → gw_shared_lib/auth_helpers.py` |
+| **RAG-Chatbot** (Produkt 1) | FastAPI + Streamlit über interne Dokumente | _intern, kein separates Repo_ |
+| **Angebots-Katalog** | 26 Angebots-Doks (PoC 01–26); **2** davon als Prototyp implementiert (`01-rag-chatbot`, `02-rechnungs-extraktion`), die übrigen als Angebots-Dokumentation | `prototypen → docs/`, `prototypes/` |
+| **Architektur-Prinzipien** (Service-Linie) | Multi-Agent, RAG, Deployment-Souveränität, Audit-Trail | _intern, kein Org-Repo_ |
+| **Gate-Modell** (Governance) | Gates G0–G8 | `governance → doku/gate-modell.md` |
+| **Stufen-Modell** (Engineering) | Stufe 1–4 (Assistent → Autonom) | _intern, kein Org-Repo_ |
 
 > **Ehrlicher Unterschied:** «26 Prototypen» ist die **Botschaft**,
 > die der Katalog trägt. Tatsächlich implementiert: 2 (RAG-Chatbot,
